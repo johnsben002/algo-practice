@@ -34,5 +34,6 @@ const biggerBranch = (arr) => {
   if (leftBranch === rightBranch) return "";
 };
 
+
 console.log(biggerBranch([3,6,2,9,-1,10]));
 console.log(biggerBranch([4]));

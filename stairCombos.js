@@ -16,8 +16,7 @@ const stairCombos = (n, cache = {}) => {
   // recursive cases
   const result = stairCombos((n-1), cache) + stairCombos((n-2), cache) + stairCombos((n-3), cache);
   cache[n] = result;
-  return result;
-    
+  return result;    
 };
 
 console.log(stairCombos(60));
