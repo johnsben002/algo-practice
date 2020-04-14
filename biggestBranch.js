@@ -35,5 +35,5 @@ const biggerBranch = (arr) => {
 };
 
 
-console.log(biggerBranch([3,6,2,9,-1,10]));
+console.log(biggerBranch([1,10,5,1,0,6]));
 console.log(biggerBranch([4]));

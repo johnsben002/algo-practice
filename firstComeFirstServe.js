@@ -42,15 +42,27 @@ function isFirstComeFirstServed(takeOutOrders, dineInOrders, servedOrders) {
     return true;
 }
 
+// function isFirstComeFirstServed(takeOutOrders, dineInOrders, servedOrders) {
 
+//   // index pointers
+//   let takeOutIndex = 0;
+//   let dineInIndex = 0;
 
+//   // iterate through servedOrders and make sure that it matches expected output
+//   for (let i = 0; i < servedOrders.length; i++) {
+//     let first = Math.min(takeOutOrders[takeOutIndex], dineInOrders[dineInIndex]);
+//     if (servedOrders[i] !== first) {
+//       return false;
+//     } else {
+//       if (first === takeOutOrders[takeOutIndex]) {
+//         takeOutIndex++;
+//       } else {
+//         dineInIndex++;
+//       }
+//     }
+//   }
 
-
-
-
-const experiment = [];
-console.log(!experiment[0])
-
+// }
 
 
 
@@ -97,3 +109,5 @@ function assertEquals(a, b, desc) {
     console.log(`${desc} ... FAIL: ${a} != ${b}`);
   }
 }
+
+
