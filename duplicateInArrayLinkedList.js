@@ -26,10 +26,10 @@ function findDuplicate(intArray) {
      steps += 1;
    }
 
-   // STEP 3: FIND DIRST NODE OF THE CYCLE
+   // STEP 3: FIND FIRST NODE OF THE CYCLE
    let pointerStart = n + 1;
    let pointerAhead = n + 1;
-   // move pointerAhead the length of the cycle
+   // move pointerAheead the length of the cycle
    for (let i = 0; i < steps; i++) {
      pointerAhead = intArray[pointerAhead-1];
    }
