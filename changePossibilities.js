@@ -1,21 +1,41 @@
-function changePossibilities(amountLeft, denominations) {
+const outerFunc = (amountLeft, denominations) => {
+  // utilize closure to memoize results
+  const memo = {};
 
-  // Calculate the number of ways to make change
-  
+  const change = (amountLeft, denominations, currentIndex = 0) => {
+    // create a memo key for the current index and amountLeft
+    const memoKey = [amountLeft, currentIndex].join(', ')
+    if (memo.hasOwnProperty(memoKey)) {
+      return memo[memoKey];
+    }
+    
+    // Base Cases:
+    // hit the amount right on!
+    if (amountLeft === 0) return 1;
+    // went past the amount we're trying to get
+    if (amountLeft < 0) return 0;
+    // we're out of demoninations
+    if (currentIndex === denominations.length) return 0;
 
-  return 0;
+    // Choose a current coin
+    const currentCoin = denominations[currentIndex];
+    
+    // find out how many possibilities we can get for each number of times using current coint
+    let numPossibilities = 0;
+    while (amountLeft >= 0) {
+      numPossibilities += change(amountLeft, denominations, currentIndex + 1);
+      amountLeft -= currentCoin;
+    }
+    
+    // save this answer in our memo and return
+    memo[memoKey] = numPossibilities;
+    return numPossibilities;
+  }
+
+  return change;
 }
 
-
-
-
-
-
-
-
-
-
-
+const changePossibilities = outerFunc();
 
 
 
