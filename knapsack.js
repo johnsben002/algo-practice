@@ -11,7 +11,7 @@ function maxDuffelBagValue(cakeTypes, weightCapacity) {
     cakeTypes.forEach(cake => {
       // cake is at or below current capacity
       if (cake.weight <= currentCapacity) {
-        maxValueAtCapacities[currentCapacity] = Math.max(maxValueAtCapacities[currentCapacity], cake.value + (maxValueAtCapacities[currentCapacity-cake.weight]))
+        maxValueAtCapacities[currentCapacity] = Math.max(maxValueAtCapacities[currentCapacity], cake.value + maxValueAtCapacities[currentCapacity-cake.weight])
       }
       // edge case with zero weight and non-zero value
       if (cake.weight === 0 && cake.value !== 0) {
