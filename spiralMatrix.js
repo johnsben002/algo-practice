@@ -2,7 +2,8 @@
  * @param {number[][]} matrix
  * @return {number[]}
  */
-var spiralOrder = function(matrix) {
+// long recursive solution -- BRUTE FORCE
+var xspiralOrder = function(matrix) {
     // fill new matrix of same size with false booleans to keep track of what has been viseted
     let booleanMatrix = makeMatrix(matrix);
 
@@ -85,6 +86,89 @@ const up = (x, y, bool, matrix, output) => {
   return right(x+1, y+1, bool, matrix, output);
 };
 
+// iterative, but similar solution
+const xxspiralOrder = matrix => {
+  // edge cases
+  if(!matrix.length || !matrix[0].length){
+    return []
+  }
+  // define coordinate points
+  let startRow = 0;
+  let endRow = matrix.length-1;
+  let startColumn = 0;
+  let endColumn = matrix[0].length-1;
+  // initilize output array
+  const output = [];
+  // start the spiral traversal
+  // will go over some elements in final iteration of while loop, we will slice them out
+  while (output.length < matrix.length * matrix[0].length) {
+    // right
+    for (let i = startColumn; i <= endColumn; i++){
+      output.push(matrix[startRow][i]);
+    }
+    startRow++;
+    // down
+    for (let i = startRow; i <= endRow; i++) {
+      output.push(matrix[i][endColumn]);
+    }
+    endColumn--;
+    // left
+    for (let i = endColumn; i >= startColumn; i--) {
+      output.push(matrix[endRow][i]);
+    }
+    endRow--;
+    // up
+    for (let i = endRow; i <= startRow; i++) {
+      output.push(matrix[i][startColumn]);
+    }
+    startColumn++;
+  }
+  // calculate length of output
+  // const length = matrix.length * matrix[0].length;
+  // return output.slice(0, length);
+  return output;
+}
+
+// // recursive solution that takes first row, and then rotates all former rows
+// const spiralOrder = matrix => {
+//   // shift off first row to concatinate to the result
+//   const firstRow = matrix.shift();
+//   // base case
+//   if (!matrix.length) return firstRow;
+//   // rotate the rest of the matrix
+//   const transposed = matrix[0].map((a,i) => {
+//     return matrix.map(row => row[i]);
+//   });
+//   const rotated = transposed.reverse();
+//   // concatinate rotated matrix to the first row
+//   return firstRow.concat(spiralOrder(rotated))
+// }
+
+var spiralOrder = function(matrix, result = []) {
+  // Write your code here, and
+   // return your final answer.
+   if (matrix.length === 0) {
+     return result
+
+   }
+
+for (let i = 0; i < matrix.length; i++) {
+ let current = matrix[i]
+  if (i === 0) {
+    result = result.concat(current);
+  } else {
+    let last = current.pop();
+    if (!last) {
+      return result
+    }
+    result.push(last)
+    current.reverse()
+  } 
+}
+
+matrix.shift()
+return spiralOrder(matrix.reverse(), result)
+};
 
 
 // TEST CASE:
@@ -95,4 +179,5 @@ const input = [
 ]
 console.log(spiralOrder(input));
 // Output: [1,2,3,4,8,12,11,10,9,5,6,7]
-console.log(spiralOrder([[1,2,3],[4,5,6],[7,8,9]]));
+// console.log(spiralOrder([[1,2,3],[4,5,6],[7,8,9]]));
+// console.log(spiralOrder([[1,2],[3,4]]));
