@@ -14,15 +14,16 @@ const orangesRotting = grid => {
   // do a BFS on the rotten oranges and take fresh oranges out of the set/include the minute it happened when you put them in the queue
   // once the set is empty, return the largest minute number
   const queue = [];
-  const stillFresh = new Set();
+  let freshCount = 0;
 
   // iterate through grid
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       if (grid[i][j] === 2) {
+        // push coordinates and the minute the orange turned rotton into queue
         queue.push([i,j,0]);
       } else if (grid[i][j] === 1) {
-        stillFresh.add(`${i},${j}`);
+        freshCount++;
       }
     }
   }
@@ -42,8 +43,8 @@ const orangesRotting = grid => {
         if (grid[newI][newJ] === 1) {
           grid[newI][newJ] = 2;
           queue.push([newI, newJ, min]);
-          // delete coordinate from stillFresh set
-          stillFresh.delete(`${newI},${newJ}`);
+          // decrement freshCount
+          freshCount--;
           // reassign minutes variable if it is not up to date
           if (minutes < min) {
             minutes = min;
@@ -54,7 +55,7 @@ const orangesRotting = grid => {
   }
 
   // if there are still fresh oranges, return -1
-  if (stillFresh.size > 0) return -1;
+  if (freshCount > 0) return -1;
 
   // otherwise return minutes
   return minutes;
