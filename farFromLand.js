@@ -23,7 +23,6 @@ var xmaxDistance = function(grid) {
       }
     }
 
-
     function bfs(row, col) {
       const visited = new Set();
       const queue = [[row, col, 0]];

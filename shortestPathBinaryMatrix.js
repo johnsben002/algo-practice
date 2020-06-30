@@ -4,7 +4,6 @@ var shortestPathBinaryMatrix = function(grid) {
   if (grid[0][0] === 1 || grid[endIndex][endIndex] === 1) {
     return -1;
   }
-
   // edge case: matrix is only length of 1
   if (grid.length === 1) {
     return 1;
@@ -17,7 +16,7 @@ var shortestPathBinaryMatrix = function(grid) {
   while (queue.length) {
     // dequeue current node
     let [row, col, step] = queue.shift();
-    // array of possible moves from current coordinate (8-directional)
+    // iterate through possible steps
     for (let [rowDiff, colDiff] of possibleMoves) {
       let newRow = row + rowDiff;
       let newCol = col + colDiff;
@@ -36,7 +35,7 @@ var shortestPathBinaryMatrix = function(grid) {
     }
   }
 
-  // if there is no clear path
+  // no clear path
   return -1;
 };
 
