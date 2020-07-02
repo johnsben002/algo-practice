@@ -17,11 +17,18 @@ var solve = function(board) {
      * 2. dfs should turn all O's to X's IF the region of O's does not include a border O
      */
 
+  const repeatCheck = new Set();
+
   // iterate through all non-border nodes of grid
   for (let i = 1; i < board.length-1; i++) {
     for (let j = 1; j < board[0].length-1; j++) {
-      if (board[i][j] === 'O') {
-        dfs(i, j);
+      if (board[i][j] === 'O' && !repeatCheck.has(`${i},${j}`)) {
+        let repeated = dfs(i, j);
+        if (typeof repeated === 'object') {
+          repeated.forEach(el => {
+            repeatCheck.add(el);
+          })
+        }
       }
     }
   }
@@ -51,7 +58,8 @@ var solve = function(board) {
               let col = Number(arr[1]);
               board[row][col] = 'O';
             })
-            return;
+            visited.add(`${newRow},${newCol}`)
+            return visited;
             // if O and not on edge, push onto stack, change to X and mark as visited
           } else if (board[newRow][newCol] === 'O' && !visited.has(`${newRow},${newCol}`)) {
             stack.push([newRow, newCol]);
@@ -62,7 +70,6 @@ var solve = function(board) {
       }
     }
   }
-  // return board;
 };
 
 const input = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]];
