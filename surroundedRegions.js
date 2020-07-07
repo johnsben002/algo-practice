@@ -73,6 +73,7 @@ var xsolve = function(board) {
 };
 
 var solve = function(board) {
+  if (!board.length) return;
   // mark all O's connected to border as #
   // left and right borders
   for (let i = 0; i < board.length; i++) {
