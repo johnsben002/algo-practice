@@ -36,8 +36,10 @@ const mark = (A, r, c) => {
   if (r < 0 || r >= A.length || c < 0 || c >= A[0].length) return;
   if (A[r][c] === 0) return;
 
+  // mark land as sea
   A[r][c] = 0;
 
+  // check neighbors
   mark(A, r, c-1);
   mark(A, r, c+1);
   mark(A, r-1, c);

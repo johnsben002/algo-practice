@@ -13,9 +13,6 @@
   */
 
 var makeConnected = function(n, connections) {
-    console.log(n);
-    console.log(connections);
-
     /**
      * STRATEGY:
      * - iterate through connections and check if both computers are in the set of connected computers
@@ -47,13 +44,14 @@ var makeConnected = function(n, connections) {
        }
      }
 
+     console.log(network)
      if (network.size === n) return 0;
      if (n-network.size <= extraCables) return n-network.size;
      return -1;
 
 };
 
-console.log(makeConnected(4, [[0,1],[0,2],[1,2]]));
-console.log(makeConnected(4, [[0,1],[0,2],[1,2]]));
-console.log(makeConnected(4, [[0,1],[0,2],[1,2]]));
-console.log(makeConnected(4, [[0,1],[0,2],[1,2]]));
+// console.log(makeConnected(4, [[0,1],[0,2],[1,2]]));
+// console.log(makeConnected(6, [[0,1],[0,2],[0,3],[1,2],[1,3]]));
+// console.log(makeConnected(6, [[0,1],[0,2],[0,3],[1,2]]));
+console.log(makeConnected(5, [[0,1],[0,2],[3,4],[2,3]]));
