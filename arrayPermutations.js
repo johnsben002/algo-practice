@@ -24,7 +24,7 @@ Output:
        return;
       }
 
-     // iterate through nums
+     // iterate through nums and recursive call
      for (let i = 0; i < options.length; i++) {
        let current = options[i];
        let rest = [...options.slice(0,i), ...options.slice(i+1)];
