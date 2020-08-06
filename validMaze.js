@@ -23,7 +23,7 @@ const validMaze = (maze, startRow, startCol, destRow, destCol) => {
       
       // return out if none of those paths work
       return;
-  }
+  };
   
   // call findPath function
   findPath(startRow, startCol, maze, destRow, destCol);
