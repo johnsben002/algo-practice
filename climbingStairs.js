@@ -26,13 +26,23 @@ Explanation: There are three ways to climb to the top.
   */
 
 
-var climbStairs = function(n, combos = new Array(n+1)) {
+var xclimbStairs = function(n, combos = new Array(n+1)) {
   if (n == 0) return 1;
   if (n < 0) return 0;
   if (combos[n] > 0) {
     return combos[n];
   }
   combos[n] = climbStairs(n-1, combos) + climbStairs(n-2, combos);
+  return combos[n];
+};
+
+var climbStairs = function(n) {
+  let combos = new Array(n+1);
+  combos[1] = 1;
+  combos[2] = 2;
+  for (let i = 3; i <= n; i++) {
+    combos[i] = combos[i-1] + combos[i-2];
+  }
   return combos[n];
 };
 
