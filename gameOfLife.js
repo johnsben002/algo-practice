@@ -31,24 +31,24 @@ var gameOfLife = function(board) {
     // for living
     if (current === 1) {
       if (numLiving < 2 || numLiving > 3) {
-        nextMove[`${i},${j}`] = 'die';
+        nextMove[`${i},${j}`] = 0;
       } else {
-        nextMove[`${i},${j}`] = 'stay';
+        nextMove[`${i},${j}`] = 1;
       }
     }
 
-    // for dying
+    // for dead
     if (current === 0) {
       if (numLiving === 3) {
-        nextMove[`${i},${j}`] = 'live';
+        nextMove[`${i},${j}`] = 1;
       } else {
-        nextMove[`${i},${j}`] = 'stay';
+        nextMove[`${i},${j}`] = 0;
       }
     }
     
   };
 
-  // run through upodates
+  // run through updates
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       update(i,j);
@@ -58,14 +58,9 @@ var gameOfLife = function(board) {
   // check nextMove and update as needed
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (nextMove[`${i},${j}`] === 'die') {
-        board[i][j] = 0;
-      }
-      if (nextMove[`${i},${j}`] === 'live') {
-        board[i][j] = 1;
+        board[i][j] = nextMove[`${i},${j}`];
       }
     }
-  }
 };
 
 console.log(gameOfLife([[0,1,0],[0,0,1],[1,1,1],[0,0,0]]));
